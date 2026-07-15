@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 700">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#FBF6E9"/><stop offset="100%" stop-color="#F9E2E7"/>
+    </linearGradient>
+  </defs>
+  <rect width="700" height="700" fill="url(#bg)"/>
+  <!-- finished keychains flatlay, scattered -->
+  <g transform="translate(220,260) rotate(-10)">
+    <circle r="80" fill="#FFFFFF" opacity="0.7" stroke="#EAAABB" stroke-width="3"/>
+    <circle r="6" fill="none" stroke="#C9A03D" stroke-width="5" cy="-100"/>
+  </g>
+  <g transform="translate(420,300) rotate(15)">
+    <circle r="95" fill="#FFFFFF" opacity="0.7" stroke="#C3ACE3" stroke-width="3"/>
+    <circle r="7" fill="none" stroke="#C9A03D" stroke-width="5" cy="-118"/>
+  </g>
+  <g transform="translate(320,470) rotate(-6)">
+    <circle r="70" fill="#FFFFFF" opacity="0.7" stroke="#DBB758" stroke-width="3"/>
+    <circle r="6" fill="none" stroke="#C9A03D" stroke-width="5" cy="-88"/>
+  </g>
+  <g transform="translate(500,500) rotate(20)">
+    <circle r="60" fill="#FFFFFF" opacity="0.7" stroke="#7BAF8C" stroke-width="3"/>
+    <circle r="5" fill="none" stroke="#C9A03D" stroke-width="4" cy="-76"/>
+  </g>
+</svg>

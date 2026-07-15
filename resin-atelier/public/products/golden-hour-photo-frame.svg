@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#FBF6E9"/>
+      <stop offset="100%" stop-color="#FDF3F5"/>
+    </linearGradient>
+    <linearGradient id="frame" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#AD8730"/>
+      <stop offset="50%" stop-color="#DBB758"/>
+      <stop offset="100%" stop-color="#F3E4B8"/>
+    </linearGradient>
+    <linearGradient id="photo" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#FDEFF2"/>
+      <stop offset="100%" stop-color="#F3E4B8"/>
+    </linearGradient>
+    <filter id="soft" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="18"/>
+    </filter>
+  </defs>
+
+  <rect width="800" height="800" fill="url(#bg)"/>
+  <circle cx="650" cy="160" r="150" fill="#DBB758" opacity="0.3" filter="url(#soft)"/>
+  <circle cx="140" cy="640" r="140" fill="#EAAABB" opacity="0.22" filter="url(#soft)"/>
+
+  <rect x="170" y="130" width="460" height="580" rx="14" fill="url(#frame)"/>
+  <rect x="204" y="164" width="392" height="512" rx="6" fill="url(#photo)"/>
+  <ellipse cx="330" cy="320" rx="100" ry="55" fill="#FFFFFF" opacity="0.4"/>
+
+  <!-- gold leaf accents -->
+  <g fill="#AD8730" opacity="0.8">
+    <path d="M170 130 l70 0 l-70 70 z"/>
+    <path d="M630 130 l-70 0 l70 70 z"/>
+    <path d="M170 710 l70 0 l-70 -70 z"/>
+    <path d="M630 710 l-70 0 l70 -70 z"/>
+  </g>
+  <g fill="#F3E4B8" opacity="0.9">
+    <path d="M190 150 l35 0 l-35 35 z"/>
+    <path d="M610 150 l-35 0 l35 35 z"/>
+  </g>
+
+  <ellipse cx="400" cy="750" rx="150" ry="14" fill="#1D1815" opacity="0.05"/>
+  <text x="400" y="775" text-anchor="middle" font-family="Georgia, serif" font-size="24" fill="#4C433D" opacity="0.5">Golden Hour Photo Frame</text>
+</svg>

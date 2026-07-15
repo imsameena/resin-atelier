@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#FBF6EF"/>
+      <stop offset="100%" stop-color="#FDF3F5"/>
+    </linearGradient>
+    <linearGradient id="bar" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.95"/>
+      <stop offset="100%" stop-color="#F3E4B8" stop-opacity="0.7"/>
+    </linearGradient>
+    <filter id="soft" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="18"/>
+    </filter>
+  </defs>
+
+  <rect width="800" height="800" fill="url(#bg)"/>
+  <circle cx="120" cy="150" r="130" fill="#EAAABB" opacity="0.28" filter="url(#soft)"/>
+  <circle cx="680" cy="620" r="170" fill="#C3ACE3" opacity="0.28" filter="url(#soft)"/>
+
+  <circle cx="400" cy="150" r="34" fill="none" stroke="#C9A03D" stroke-width="10"/>
+  <rect x="388" y="182" width="24" height="46" rx="10" fill="#C9A03D"/>
+
+  <!-- name bar -->
+  <rect x="160" y="330" width="480" height="200" rx="40" fill="url(#bar)" stroke="#DBB758" stroke-width="3"/>
+  <ellipse cx="260" cy="380" rx="70" ry="30" fill="#FFFFFF" opacity="0.5"/>
+  <text x="400" y="450" text-anchor="middle" font-family="'Brush Script MT', cursive, Georgia, serif" font-size="90" fill="#A94A69">Priya</text>
+
+  <!-- decorative flecks -->
+  <circle cx="210" cy="360" r="5" fill="#DBB758" opacity="0.8"/>
+  <circle cx="590" cy="500" r="6" fill="#8C67B8" opacity="0.7"/>
+  <circle cx="600" cy="360" r="4" fill="#C96585" opacity="0.7"/>
+  <circle cx="200" cy="500" r="4" fill="#7BAF8C" opacity="0.6"/>
+
+  <ellipse cx="400" cy="670" rx="150" ry="18" fill="#1D1815" opacity="0.06"/>
+  <text x="400" y="760" text-anchor="middle" font-family="Georgia, serif" font-size="26" fill="#4C433D" opacity="0.55">Classic Name Keychain</text>
+</svg>

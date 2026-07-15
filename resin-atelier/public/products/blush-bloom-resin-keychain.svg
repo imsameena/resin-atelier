@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#FDF3F5"/>
+      <stop offset="100%" stop-color="#ECE4F8"/>
+    </linearGradient>
+    <radialGradient id="puck" cx="35%" cy="30%" r="75%">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.95"/>
+      <stop offset="45%" stop-color="#FDEFF2" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#EAAABB" stop-opacity="0.55"/>
+    </radialGradient>
+    <filter id="soft" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="18"/>
+    </filter>
+    <filter id="soft2" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="6"/>
+    </filter>
+  </defs>
+
+  <rect width="800" height="800" fill="url(#bg)"/>
+  <circle cx="150" cy="120" r="140" fill="#F3E4B8" opacity="0.35" filter="url(#soft)"/>
+  <circle cx="680" cy="650" r="180" fill="#C3ACE3" opacity="0.3" filter="url(#soft)"/>
+
+  <!-- keyring loop -->
+  <circle cx="400" cy="150" r="34" fill="none" stroke="#C9A03D" stroke-width="10"/>
+  <rect x="388" y="182" width="24" height="46" rx="10" fill="#C9A03D"/>
+
+  <!-- resin puck -->
+  <circle cx="400" cy="430" r="220" fill="url(#puck)" stroke="#EAAABB" stroke-width="3"/>
+  <ellipse cx="330" cy="330" rx="90" ry="50" fill="#FFFFFF" opacity="0.5" filter="url(#soft2)"/>
+
+  <!-- dried flowers -->
+  <g opacity="0.85">
+    <g transform="translate(330,400) rotate(10)">
+      <ellipse cx="0" cy="-28" rx="14" ry="26" fill="#C96585" opacity="0.75"/>
+      <ellipse cx="24" cy="-10" rx="14" ry="26" fill="#C96585" opacity="0.7" transform="rotate(72)"/>
+      <ellipse cx="15" cy="22" rx="14" ry="26" fill="#C96585" opacity="0.65" transform="rotate(144)"/>
+      <ellipse cx="-15" cy="22" rx="14" ry="26" fill="#C96585" opacity="0.65" transform="rotate(216)"/>
+      <ellipse cx="-24" cy="-10" rx="14" ry="26" fill="#C96585" opacity="0.7" transform="rotate(288)"/>
+      <circle cx="0" cy="0" r="10" fill="#DBB758"/>
+    </g>
+    <g transform="translate(460,470) rotate(-18) scale(0.7)">
+      <ellipse cx="0" cy="-28" rx="14" ry="26" fill="#8C67B8" opacity="0.7"/>
+      <ellipse cx="24" cy="-10" rx="14" ry="26" fill="#8C67B8" opacity="0.65" transform="rotate(72)"/>
+      <ellipse cx="15" cy="22" rx="14" ry="26" fill="#8C67B8" opacity="0.6" transform="rotate(144)"/>
+      <ellipse cx="-15" cy="22" rx="14" ry="26" fill="#8C67B8" opacity="0.6" transform="rotate(216)"/>
+      <ellipse cx="-24" cy="-10" rx="14" ry="26" fill="#8C67B8" opacity="0.65" transform="rotate(288)"/>
+      <circle cx="0" cy="0" r="10" fill="#DBB758"/>
+    </g>
+    <path d="M420 380 q30 -60 70 -40" stroke="#7BAF8C" stroke-width="5" fill="none" opacity="0.6"/>
+    <path d="M300 470 q-20 40 10 70" stroke="#7BAF8C" stroke-width="5" fill="none" opacity="0.6"/>
+    <circle cx="380" cy="520" r="6" fill="#DBB758" opacity="0.8"/>
+    <circle cx="440" cy="360" r="5" fill="#DBB758" opacity="0.7"/>
+    <circle cx="330" cy="470" r="4" fill="#DBB758" opacity="0.7"/>
+  </g>
+
+  <ellipse cx="400" cy="670" rx="150" ry="18" fill="#1D1815" opacity="0.06"/>
+  <text x="400" y="760" text-anchor="middle" font-family="Georgia, serif" font-size="26" fill="#4C433D" opacity="0.55">Blush Bloom Keychain</text>
+</svg>

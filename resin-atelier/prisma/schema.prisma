@@ -1,0 +1,223 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  CUSTOMER
+  ADMIN
+}
+
+enum OrderStatus {
+  PENDING_PAYMENT
+  PAID
+  CONFIRMED
+  IN_PROGRESS
+  READY_TO_SHIP
+  SHIPPED
+  DELIVERED
+  CANCELLED
+  REFUNDED
+}
+
+enum PaymentStatus {
+  PENDING
+  PAID
+  FAILED
+  REFUNDED
+}
+
+model User {
+  id            String    @id @default(cuid())
+  name          String
+  email         String    @unique
+  phone         String?
+  passwordHash  String
+  role          Role      @default(CUSTOMER)
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  addresses     Address[]
+  orders        Order[]
+  testimonials  Testimonial[]
+}
+
+model Address {
+  id         String   @id @default(cuid())
+  userId     String
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  fullName   String
+  phone      String
+  line1      String
+  line2      String?
+  city       String
+  state      String
+  pincode    String
+  isDefault  Boolean  @default(false)
+  createdAt  DateTime @default(now())
+
+  orders     Order[]
+}
+
+model Category {
+  id          String    @id @default(cuid())
+  name        String    @unique
+  slug        String    @unique
+  description String?
+  imageUrl    String?
+  sortOrder   Int       @default(0)
+  products    Product[]
+}
+
+model Product {
+  id               String   @id @default(cuid())
+  name             String
+  slug             String   @unique
+  description      String
+  shortDescription String?
+  basePrice        Int // in paise (INR smallest unit)
+  compareAtPrice   Int?
+  categoryId       String
+  category         Category @relation(fields: [categoryId], references: [id])
+  images           ProductImage[]
+  stock            Int      @default(0)
+  sku              String   @unique
+  isActive         Boolean  @default(true)
+  isFeatured       Boolean  @default(false)
+  allowsCustomName    Boolean @default(true)
+  allowsColorChoice   Boolean @default(true)
+  allowsGlitter       Boolean @default(true)
+  allowsPhotoUpload   Boolean @default(false)
+  allowsMessage       Boolean @default(true)
+  colorOptions     String[] @default([])
+  materialInfo     String?
+  careInstructions String?
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  orderItems       OrderItem[]
+
+  @@index([categoryId])
+}
+
+model ProductImage {
+  id        String  @id @default(cuid())
+  productId String
+  product   Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+  url       String
+  alt       String?
+  sortOrder Int     @default(0)
+}
+
+model Order {
+  id              String        @id @default(cuid())
+  orderNumber     String        @unique
+  userId          String?
+  user            User?         @relation(fields: [userId], references: [id])
+  guestEmail      String?
+  guestName       String?
+  guestPhone      String?
+  addressId       String?
+  address         Address?      @relation(fields: [addressId], references: [id])
+  shippingSnapshot Json?
+
+  items           OrderItem[]
+  subtotal        Int
+  shippingFee     Int      @default(0)
+  discount        Int      @default(0)
+  total           Int
+
+  status          OrderStatus  @default(PENDING_PAYMENT)
+  orderNotes      String?
+
+  payment         Payment?
+
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@index([userId])
+  @@index([status])
+}
+
+model OrderItem {
+  id             String   @id @default(cuid())
+  orderId        String
+  order          Order    @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  productId      String
+  product        Product  @relation(fields: [productId], references: [id])
+  productName    String
+  unitPrice      Int
+  quantity       Int
+  lineTotal      Int
+
+  customName         String?
+  customColor        String?
+  customGlitterColor String?
+  customTasselColor  String?
+  customShape        String?
+  customFont         String?
+  customDecoration   String?
+  customMessage      String?
+  customPhotoUrl     String?
+  customNotes        String?
+
+  createdAt      DateTime @default(now())
+}
+
+model Payment {
+  id            String        @id @default(cuid())
+  orderId       String        @unique
+  order         Order         @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  method        String        @default("UPI")
+  upiId         String?
+  utrNumber     String?
+  amount        Int
+  currency      String        @default("INR")
+  status        PaymentStatus @default(PENDING)
+  customerConfirmedAt DateTime?
+  verifiedAt    DateTime?
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+}
+
+model Testimonial {
+  id        String   @id @default(cuid())
+  userId    String?
+  user      User?    @relation(fields: [userId], references: [id])
+  name      String
+  message   String
+  rating    Int      @default(5)
+  imageUrl  String?
+  isApproved Boolean @default(true)
+  createdAt DateTime @default(now())
+}
+
+model GalleryImage {
+  id        String   @id @default(cuid())
+  imageUrl  String
+  caption   String?
+  link      String?
+  sortOrder Int      @default(0)
+  createdAt DateTime @default(now())
+}
+
+model FAQItem {
+  id        String   @id @default(cuid())
+  question  String
+  answer    String
+  sortOrder Int      @default(0)
+}
+
+model ContactMessage {
+  id        String   @id @default(cuid())
+  name      String
+  email     String
+  phone     String?
+  message   String
+  isRead    Boolean  @default(false)
+  createdAt DateTime @default(now())
+}

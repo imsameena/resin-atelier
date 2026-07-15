@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#ECE4F8"/>
+      <stop offset="100%" stop-color="#FDF3F5"/>
+    </linearGradient>
+    <linearGradient id="frame" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#F3E4B8"/>
+      <stop offset="100%" stop-color="#DBB758"/>
+    </linearGradient>
+    <linearGradient id="photo" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#FBF6EF"/>
+      <stop offset="100%" stop-color="#F9E2E7"/>
+    </linearGradient>
+    <filter id="soft" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="20"/>
+    </filter>
+  </defs>
+
+  <rect width="800" height="800" fill="url(#bg)"/>
+  <circle cx="120" cy="160" r="150" fill="#C3ACE3" opacity="0.25" filter="url(#soft)"/>
+  <circle cx="660" cy="640" r="150" fill="#EAAABB" opacity="0.22" filter="url(#soft)"/>
+
+  <rect x="140" y="110" width="520" height="600" rx="16" fill="url(#frame)"/>
+  <rect x="176" y="146" width="448" height="528" rx="8" fill="url(#photo)"/>
+
+  <!-- preserved bouquet: cluster of layered florals -->
+  <g transform="translate(400,420)">
+    <g transform="translate(-70,-40) scale(0.8)">
+      <ellipse cx="0" cy="-28" rx="14" ry="26" fill="#C96585" opacity="0.8"/>
+      <ellipse cx="24" cy="-10" rx="14" ry="26" fill="#C96585" opacity="0.75" transform="rotate(72)"/>
+      <ellipse cx="15" cy="22" rx="14" ry="26" fill="#C96585" opacity="0.7" transform="rotate(144)"/>
+      <ellipse cx="-15" cy="22" rx="14" ry="26" fill="#C96585" opacity="0.7" transform="rotate(216)"/>
+      <ellipse cx="-24" cy="-10" rx="14" ry="26" fill="#C96585" opacity="0.75" transform="rotate(288)"/>
+      <circle cx="0" cy="0" r="10" fill="#DBB758"/>
+    </g>
+    <g transform="translate(60,-20) scale(0.9)">
+      <ellipse cx="0" cy="-28" rx="14" ry="26" fill="#8C67B8" opacity="0.8"/>
+      <ellipse cx="24" cy="-10" rx="14" ry="26" fill="#8C67B8" opacity="0.75" transform="rotate(72)"/>
+      <ellipse cx="15" cy="22" rx="14" ry="26" fill="#8C67B8" opacity="0.7" transform="rotate(144)"/>
+      <ellipse cx="-15" cy="22" rx="14" ry="26" fill="#8C67B8" opacity="0.7" transform="rotate(216)"/>
+      <ellipse cx="-24" cy="-10" rx="14" ry="26" fill="#8C67B8" opacity="0.75" transform="rotate(288)"/>
+      <circle cx="0" cy="0" r="10" fill="#DBB758"/>
+    </g>
+    <g transform="translate(-10,40) scale(0.7)">
+      <ellipse cx="0" cy="-28" rx="14" ry="26" fill="#DE84A0" opacity="0.85"/>
+      <ellipse cx="24" cy="-10" rx="14" ry="26" fill="#DE84A0" opacity="0.8" transform="rotate(72)"/>
+      <ellipse cx="15" cy="22" rx="14" ry="26" fill="#DE84A0" opacity="0.75" transform="rotate(144)"/>
+      <ellipse cx="-15" cy="22" rx="14" ry="26" fill="#DE84A0" opacity="0.75" transform="rotate(216)"/>
+      <ellipse cx="-24" cy="-10" rx="14" ry="26" fill="#DE84A0" opacity="0.8" transform="rotate(288)"/>
+      <circle cx="0" cy="0" r="8" fill="#DBB758"/>
+    </g>
+    <path d="M-90 30 q-20 60 20 100" stroke="#7BAF8C" stroke-width="5" fill="none" opacity="0.65"/>
+    <path d="M90 20 q30 50 -10 100" stroke="#7BAF8C" stroke-width="5" fill="none" opacity="0.65"/>
+    <path d="M0 70 q0 60 0 110" stroke="#7BAF8C" stroke-width="5" fill="none" opacity="0.6"/>
+  </g>
+
+  <text x="400" y="650" text-anchor="middle" font-family="'Brush Script MT', cursive, Georgia, serif" font-size="30" fill="#A94A69">08 . 12 . 2024</text>
+
+  <ellipse cx="400" cy="740" rx="170" ry="14" fill="#1D1815" opacity="0.05"/>
+  <text x="400" y="775" text-anchor="middle" font-family="Georgia, serif" font-size="22" fill="#4C433D" opacity="0.5">Anniversary Bouquet Preservation Frame</text>
+</svg>

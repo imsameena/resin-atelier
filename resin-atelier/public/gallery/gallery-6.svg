@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 700">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#FBF6E9"/><stop offset="100%" stop-color="#ECE4F8"/>
+    </linearGradient>
+  </defs>
+  <rect width="700" height="700" fill="url(#bg)"/>
+  <!-- mini photo frame flatlay with florals -->
+  <g transform="translate(350,380) rotate(-4)">
+    <rect x="-150" y="-190" width="300" height="380" rx="14" fill="#F3E4B8" opacity="0.9"/>
+    <rect x="-120" y="-160" width="240" height="320" rx="6" fill="#F9E2E7" opacity="0.85"/>
+    <ellipse cx="-40" cy="-80" rx="60" ry="34" fill="#FFFFFF" opacity="0.4"/>
+  </g>
+  <g transform="translate(180,560) rotate(12) scale(0.6)">
+    <ellipse cx="0" cy="-28" rx="14" ry="26" fill="#C96585" opacity="0.7"/>
+    <ellipse cx="24" cy="-10" rx="14" ry="26" fill="#C96585" opacity="0.65" transform="rotate(72)"/>
+    <ellipse cx="15" cy="22" rx="14" ry="26" fill="#C96585" opacity="0.6" transform="rotate(144)"/>
+    <ellipse cx="-15" cy="22" rx="14" ry="26" fill="#C96585" opacity="0.6" transform="rotate(216)"/>
+    <ellipse cx="-24" cy="-10" rx="14" ry="26" fill="#C96585" opacity="0.65" transform="rotate(288)"/>
+    <circle cx="0" cy="0" r="10" fill="#DBB758"/>
+  </g>
+</svg>

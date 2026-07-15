@@ -1,0 +1,74 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-display: "Playfair Display", serif;
+  --font-body: "Poppins", sans-serif;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-cream-100 text-ink-800 font-body antialiased;
+    background-image: radial-gradient(circle at 15% 0%, rgba(233, 184, 196, 0.18), transparent 40%),
+      radial-gradient(circle at 85% 20%, rgba(201, 184, 232, 0.18), transparent 45%);
+    background-attachment: fixed;
+  }
+  h1, h2, h3, h4 {
+    @apply font-display text-ink-900;
+  }
+}
+
+@layer components {
+  .container-atelier {
+    @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-full bg-ink-900 px-6 py-3 text-sm font-medium text-cream-50 shadow-soft transition-all duration-300 hover:bg-blush-600 hover:shadow-card active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 rounded-full border border-ink-900/15 bg-white/70 px-6 py-3 text-sm font-medium text-ink-900 backdrop-blur transition-all duration-300 hover:border-gold-400 hover:bg-gold-50 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50;
+  }
+
+  .btn-gold {
+    @apply inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-gold-400 to-gold-500 px-6 py-3 text-sm font-semibold text-white shadow-soft transition-all duration-300 hover:shadow-card active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-60;
+  }
+
+  .card-atelier {
+    @apply rounded-xl2 border border-ink-900/5 bg-white/80 shadow-soft backdrop-blur-sm transition-shadow duration-300 hover:shadow-card;
+  }
+
+  .input-atelier {
+    @apply w-full rounded-xl border border-ink-900/12 bg-white/80 px-4 py-2.5 text-sm text-ink-800 placeholder:text-ink-400 outline-none transition-colors focus:border-lavender-400 focus:ring-2 focus:ring-lavender-200;
+  }
+
+  .label-atelier {
+    @apply mb-1.5 block text-sm font-medium text-ink-600;
+  }
+
+  .section-title {
+    @apply font-display text-3xl font-semibold text-ink-900 sm:text-4xl;
+  }
+
+  .badge {
+    @apply inline-flex items-center rounded-full px-3 py-1 text-xs font-medium;
+  }
+}
+
+@layer utilities {
+  .text-gradient-gold {
+    @apply bg-gradient-to-r from-gold-400 via-gold-500 to-blush-500 bg-clip-text text-transparent;
+  }
+  .scrollbar-none::-webkit-scrollbar {
+    display: none;
+  }
+  .scrollbar-none {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}

@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#FDF3F5"/>
+      <stop offset="50%" stop-color="#FBF6E9"/>
+      <stop offset="100%" stop-color="#ECE4F8"/>
+    </linearGradient>
+    <radialGradient id="puck" cx="35%" cy="30%" r="80%">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.95"/>
+      <stop offset="100%" stop-color="#F3E4B8" stop-opacity="0.65"/>
+    </radialGradient>
+    <filter id="soft" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="20"/>
+    </filter>
+  </defs>
+
+  <rect width="800" height="800" fill="url(#bg)"/>
+  <circle cx="150" cy="620" r="160" fill="#EAAABB" opacity="0.25" filter="url(#soft)"/>
+  <circle cx="650" cy="160" r="160" fill="#DBB758" opacity="0.25" filter="url(#soft)"/>
+
+  <!-- two interlocking heart pucks -->
+  <g transform="translate(320,420)">
+    <circle r="190" fill="url(#puck)" stroke="#DBB758" stroke-width="3"/>
+    <path d="M0 -50 C 40 -100 120 -70 120 -10 C 120 60 40 100 0 140 C -40 100 -120 60 -120 -10 C -120 -70 -40 -100 0 -50 Z"
+          fill="#C96585" opacity="0.55" transform="scale(0.55)"/>
+  </g>
+  <g transform="translate(480,420)">
+    <circle r="190" fill="url(#puck)" stroke="#C3ACE3" stroke-width="3" opacity="0.95"/>
+    <path d="M0 -50 C 40 -100 120 -70 120 -10 C 120 60 40 100 0 140 C -40 100 -120 60 -120 -10 C -120 -70 -40 -100 0 -50 Z"
+          fill="#8C67B8" opacity="0.5" transform="scale(0.55)"/>
+  </g>
+
+  <circle cx="320" cy="200" r="26" fill="none" stroke="#C9A03D" stroke-width="8"/>
+  <rect x="310" y="226" width="20" height="34" rx="8" fill="#C9A03D"/>
+  <circle cx="480" cy="200" r="26" fill="none" stroke="#C9A03D" stroke-width="8"/>
+  <rect x="470" y="226" width="20" height="34" rx="8" fill="#C9A03D"/>
+
+  <!-- gold leaf flecks -->
+  <g fill="#AD8730" opacity="0.75">
+    <path d="M260 340 l24 0 l-24 24 z"/>
+    <path d="M540 340 l-24 0 l24 24 z"/>
+    <path d="M400 250 l18 18 l-18 18 l-18 -18 z"/>
+  </g>
+
+  <text x="400" y="470" text-anchor="middle" font-family="'Brush Script MT', cursive, Georgia, serif" font-size="34" fill="#A94A69">forever &amp; always</text>
+
+  <ellipse cx="400" cy="660" rx="170" ry="16" fill="#1D1815" opacity="0.06"/>
+  <text x="400" y="740" text-anchor="middle" font-family="Georgia, serif" font-size="24" fill="#4C433D" opacity="0.55">Forever Us Wedding Keepsake Set</text>
+</svg>

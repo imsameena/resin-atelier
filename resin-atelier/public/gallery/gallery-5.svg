@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 700">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#F7F4FC"/><stop offset="100%" stop-color="#FBF6EF"/>
+    </linearGradient>
+  </defs>
+  <rect width="700" height="700" fill="url(#bg)"/>
+  <!-- workspace: molds and tools -->
+  <g transform="translate(230,380)">
+    <rect x="-70" y="-40" width="140" height="80" rx="16" fill="#FFFFFF" opacity="0.75" stroke="#C3ACE3" stroke-width="3"/>
+    <circle cx="-30" cy="0" r="16" fill="#DBCBF0"/>
+    <circle cx="10" cy="0" r="16" fill="#DBCBF0"/>
+    <circle cx="45" cy="0" r="16" fill="#DBCBF0"/>
+  </g>
+  <g transform="translate(470,420) rotate(-8)">
+    <rect x="-10" y="-100" width="20" height="180" rx="8" fill="#C9A03D" opacity="0.8"/>
+    <ellipse cx="0" cy="-100" rx="26" ry="10" fill="#C9A03D" opacity="0.8"/>
+  </g>
+  <circle cx="380" cy="250" r="10" fill="#F3E4B8"/>
+  <circle cx="410" cy="270" r="6" fill="#EAAABB"/>
+  <circle cx="350" cy="280" r="5" fill="#DBCBF0"/>
+</svg>

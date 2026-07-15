@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#F7F4FC"/>
+      <stop offset="100%" stop-color="#FDF3F5"/>
+    </linearGradient>
+    <radialGradient id="puckA" cx="35%" cy="30%" r="80%">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.95"/>
+      <stop offset="100%" stop-color="#C3ACE3" stop-opacity="0.6"/>
+    </radialGradient>
+    <radialGradient id="puckB" cx="35%" cy="30%" r="80%">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.95"/>
+      <stop offset="100%" stop-color="#EAAABB" stop-opacity="0.6"/>
+    </radialGradient>
+    <filter id="soft" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="18"/>
+    </filter>
+  </defs>
+
+  <rect width="800" height="800" fill="url(#bg)"/>
+  <circle cx="140" cy="620" r="150" fill="#F3E4B8" opacity="0.3" filter="url(#soft)"/>
+  <circle cx="660" cy="180" r="150" fill="#C3ACE3" opacity="0.25" filter="url(#soft)"/>
+
+  <g transform="translate(-40,10)">
+    <circle cx="290" cy="150" r="26" fill="none" stroke="#C9A03D" stroke-width="8"/>
+    <rect x="280" y="176" width="20" height="36" rx="8" fill="#C9A03D"/>
+    <circle cx="290" cy="400" r="170" fill="url(#puckA)" stroke="#C3ACE3" stroke-width="3"/>
+    <text x="290" y="425" text-anchor="middle" font-family="Georgia, serif" font-weight="700" font-size="110" fill="#6F4F97">A</text>
+  </g>
+
+  <g transform="translate(40,60)">
+    <circle cx="520" cy="150" r="26" fill="none" stroke="#C9A03D" stroke-width="8"/>
+    <rect x="510" y="176" width="20" height="36" rx="8" fill="#C9A03D"/>
+    <circle cx="520" cy="400" r="170" fill="url(#puckB)" stroke="#EAAABB" stroke-width="3"/>
+    <text x="520" y="425" text-anchor="middle" font-family="Georgia, serif" font-weight="700" font-size="110" fill="#A94A69">R</text>
+  </g>
+
+  <ellipse cx="400" cy="690" rx="180" ry="18" fill="#1D1815" opacity="0.06"/>
+  <text x="400" y="760" text-anchor="middle" font-family="Georgia, serif" font-size="26" fill="#4C433D" opacity="0.55">Initials Duo Keychain Set</text>
+</svg>
