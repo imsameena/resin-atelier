@@ -24,7 +24,19 @@ const requestSchema = z.object({
 
 export async function POST(req: Request) {
   try {
-    const user = await getCurrentUser();
+    const sessionUser = await getCurrentUser();
+    // The session is a JWT that isn't re-validated against the DB on every request,
+    // so a stale cookie (e.g. from before a DB reset) can reference a user that no
+    // longer exists. Confirm the row is actually there before trusting it below.
+    const user = sessionUser
+      ? await prisma.user.findUnique({ where: { id: sessionUser.id } })
+      : null;
+    if (!user && sessionUser) {
+      return NextResponse.json(
+        { error: "Your session has expired. Please log in again to continue." },
+        { status: 401 }
+      );
+    }
     const body = await req.json();
     const parsed = requestSchema.safeParse(body);
 

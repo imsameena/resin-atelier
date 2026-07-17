@@ -96,6 +96,40 @@ There's no payment gateway integration — checkout is a two-step, admin-verifie
 
 Because there's no gateway callback, payment verification is inherently manual — budget for checking incoming UPI payments before shipping orders.
 
+### 6a. WhatsApp order notifications
+
+When a customer confirms payment (step 2 above), the site sends you a WhatsApp message with their order details and delivery address, so you don't have to keep checking the admin dashboard. This uses Meta's free WhatsApp Cloud API:
+
+1. Go to [developers.facebook.com](https://developers.facebook.com), sign in, and create an app of type "Business".
+2. In the app dashboard, add the **WhatsApp** product.
+3. Under **WhatsApp > API Setup** you'll see a test phone number and a temporary access token. Note the **Phone Number ID** shown there.
+4. In the same page, under "To" / recipient numbers, add your own personal WhatsApp number and verify it with the OTP Meta sends — this lets the test number message you.
+5. For a token that doesn't expire every 24 hours: go to **Business Settings > Users > System Users**, create a system user, generate a permanent token for it with the `whatsapp_business_messaging` permission.
+6. Add these to `.env`:
+   ```
+   WHATSAPP_ACCESS_TOKEN="<your permanent token>"
+   WHATSAPP_PHONE_NUMBER_ID="<phone number id from step 3>"
+   ADMIN_WHATSAPP_NUMBER="<your number, country code + number, no + or spaces, e.g. 917661008991>"
+   ```
+7. Restart the dev server. If any of these are unset, notification sending is silently skipped (checkout still works) — check the server logs if a message doesn't arrive.
+
+This sends free-form text, which Meta only allows to numbers you've explicitly added as test recipients in the dashboard — that's fine here since the only recipient is you, the shop owner. It does not require Meta business verification or "going live."
+
+### 6b. Email order notifications
+
+Alongside (or instead of) WhatsApp, the site can email you the same order details via Gmail SMTP using an [App Password](https://myaccount.google.com/apppasswords) — no paid email service needed:
+
+1. Turn on 2-Step Verification on the Gmail account you want to send from, if it isn't already.
+2. Go to [myaccount.google.com/apppasswords](https://myaccount.google.com/apppasswords), create an app password (name it e.g. "Resin Atelier"), and copy the 16-character password.
+3. Add these to `.env`:
+   ```
+   EMAIL_USER="youraddress@gmail.com"
+   EMAIL_APP_PASSWORD="<the 16-character app password, no spaces>"
+   ```
+4. Restart the dev server. Notification emails are sent to `ADMIN_EMAIL`. If `EMAIL_USER` or `EMAIL_APP_PASSWORD` is unset, sending is silently skipped (checkout still works) — check the server logs if an email doesn't arrive.
+
+Both notifications fire from the same event (`POST /api/checkout/confirm-payment`, right after the customer says they've paid) and are independent — set up one, both, or neither.
+
 ### 7. Image uploads
 
 Product images and customer photo uploads are stored locally under `public/uploads` by default — fine for development, but **ephemeral on most hosting platforms** (files won't survive a redeploy). For production, swap the storage in `src/app/api/upload/route.ts` for a persistent object store such as Supabase Storage, Cloudinary, or S3.

@@ -1,6 +1,8 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
 import { prisma } from "@/lib/prisma";
+import { sendWhatsAppMessage, buildOrderNotificationMessage } from "@/lib/whatsapp";
+import { sendOrderNotificationEmail } from "@/lib/email";
 
 const schema = z.object({
   orderId: z.string(),
@@ -21,7 +23,10 @@ export async function POST(req: Request) {
 
     const { orderId, utrNumber } = parsed.data;
 
-    const order = await prisma.order.findUnique({ where: { id: orderId }, include: { payment: true } });
+    const order = await prisma.order.findUnique({
+      where: { id: orderId },
+      include: { payment: true, items: true, user: true },
+    });
     if (!order || !order.payment) {
       return NextResponse.json({ error: "Order not found." }, { status: 404 });
     }
@@ -30,13 +35,28 @@ export async function POST(req: Request) {
       return NextResponse.json({ success: true, orderNumber: order.orderNumber });
     }
 
+    const finalUtrNumber = utrNumber || order.payment.utrNumber;
+
     await prisma.payment.update({
       where: { id: order.payment.id },
       data: {
-        utrNumber: utrNumber || order.payment.utrNumber,
+        utrNumber: finalUtrNumber,
         customerConfirmedAt: new Date(),
       },
     });
+
+    const notificationMessage = buildOrderNotificationMessage({ ...order, utrNumber: finalUtrNumber });
+
+    const adminNumber = process.env.ADMIN_WHATSAPP_NUMBER;
+    if (adminNumber) {
+      sendWhatsAppMessage(adminNumber, notificationMessage).catch((err) =>
+        console.error("Failed to send order WhatsApp notification:", err)
+      );
+    }
+
+    sendOrderNotificationEmail(`New order confirmed: ${order.orderNumber}`, notificationMessage).catch((err) =>
+      console.error("Failed to send order email notification:", err)
+    );
 
     return NextResponse.json({ success: true, orderNumber: order.orderNumber });
   } catch (err) {
