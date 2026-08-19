@@ -6,13 +6,16 @@ import { sendOrderNotificationEmail } from "@/lib/email";
 
 const schema = z.object({
   orderId: z.string(),
-  utrNumber: z.string().max(60).optional().or(z.literal("")),
+  utrNumber: z
+    .string()
+    .trim()
+    .regex(/^\d{12}$/, "UTR must be the 12-digit UPI transaction/reference number."),
 });
 
 // Called by the customer after they've completed the UPI transfer. This does NOT
 // mark the order as paid — it just records that the customer says they've paid
-// (plus their UTR reference, if provided) so the admin can cross-check against
-// the actual UPI/bank statement before confirming the order.
+// (plus their UTR reference) so the admin can cross-check against the actual
+// UPI/bank statement before confirming the order.
 export async function POST(req: Request) {
   try {
     const body = await req.json();
@@ -35,17 +38,15 @@ export async function POST(req: Request) {
       return NextResponse.json({ success: true, orderNumber: order.orderNumber });
     }
 
-    const finalUtrNumber = utrNumber || order.payment.utrNumber;
-
     await prisma.payment.update({
       where: { id: order.payment.id },
       data: {
-        utrNumber: finalUtrNumber,
+        utrNumber,
         customerConfirmedAt: new Date(),
       },
     });
 
-    const notificationMessage = buildOrderNotificationMessage({ ...order, utrNumber: finalUtrNumber });
+    const notificationMessage = buildOrderNotificationMessage({ ...order, utrNumber });
 
     const adminNumber = process.env.ADMIN_WHATSAPP_NUMBER;
     if (adminNumber) {
