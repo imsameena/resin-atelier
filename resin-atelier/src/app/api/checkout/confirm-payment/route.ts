@@ -44,15 +44,19 @@ export async function POST(req: Request) {
     const notificationMessage = buildOrderNotificationMessage(order);
 
     const adminNumber = process.env.ADMIN_WHATSAPP_NUMBER;
+    const notifications: Promise<void>[] = [
+      sendOrderNotificationEmail(`New order placed: ${order.orderNumber}`, notificationMessage),
+    ];
     if (adminNumber) {
-      sendWhatsAppMessage(adminNumber, notificationMessage).catch((err) =>
-        console.error("Failed to send order WhatsApp notification:", err)
-      );
+      notifications.push(sendWhatsAppMessage(adminNumber, notificationMessage));
     }
 
-    sendOrderNotificationEmail(`New order placed: ${order.orderNumber}`, notificationMessage).catch((err) =>
-      console.error("Failed to send order email notification:", err)
-    );
+    // Awaited (not fire-and-forget) so the notification actually finishes sending
+    // before the serverless function returns and its execution is frozen.
+    const results = await Promise.allSettled(notifications);
+    results.forEach((r) => {
+      if (r.status === "rejected") console.error("Failed to send order notification:", r.reason);
+    });
 
     return NextResponse.json({ success: true, orderNumber: order.orderNumber });
   } catch (err) {
