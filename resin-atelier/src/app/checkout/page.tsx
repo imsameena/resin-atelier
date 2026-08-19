@@ -232,8 +232,6 @@ function UpiPaymentStep({ info, onDone }: { info: PaymentInfo; onDone: () => voi
   const router = useRouter();
   const [qrDataUrl, setQrDataUrl] = useState<string | null>(null);
   const [copied, setCopied] = useState(false);
-  const [utrNumber, setUtrNumber] = useState("");
-  const [utrError, setUtrError] = useState<string | null>(null);
   const [submitting, setSubmitting] = useState(false);
 
   useEffect(() => {
@@ -254,18 +252,12 @@ function UpiPaymentStep({ info, onDone }: { info: PaymentInfo; onDone: () => voi
   }
 
   async function handleConfirm() {
-    const trimmedUtr = utrNumber.trim();
-    if (!/^\d{12}$/.test(trimmedUtr)) {
-      setUtrError("Enter the 12-digit UPI transaction/reference number shown in your payment app.");
-      return;
-    }
-    setUtrError(null);
     setSubmitting(true);
     try {
       const res = await fetch("/api/checkout/confirm-payment", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ orderId: info.orderId, utrNumber: trimmedUtr }),
+        body: JSON.stringify({ orderId: info.orderId }),
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || "Something went wrong");
@@ -311,36 +303,13 @@ function UpiPaymentStep({ info, onDone }: { info: PaymentInfo; onDone: () => voi
           Open in UPI App <ExternalLink className="h-4 w-4" />
         </a>
 
-        <div className="mt-8 border-t border-ink-900/8 pt-6 text-left">
-          <label className="label-atelier">UPI Transaction / Reference No.</label>
-          <input
-            className="input-atelier"
-            placeholder="e.g. 123456789012"
-            inputMode="numeric"
-            maxLength={12}
-            value={utrNumber}
-            onChange={(e) => {
-              setUtrNumber(e.target.value);
-              if (utrError) setUtrError(null);
-            }}
-          />
-          {utrError ? (
-            <p className="mt-1.5 text-xs text-red-500">{utrError}</p>
-          ) : (
-            <p className="mt-1.5 text-xs text-ink-400">
-              Enter the 12-digit reference number shown in your UPI app after paying — we use it to verify your
-              payment.
-            </p>
-          )}
-        </div>
-
-        <button onClick={handleConfirm} disabled={submitting} className="btn-primary mt-4 w-full">
+        <button onClick={handleConfirm} disabled={submitting} className="btn-primary mt-8 w-full">
           {submitting && <Loader2 className="h-4 w-4 animate-spin" />}
           I&apos;ve Completed the Payment
         </button>
         <p className="mt-3 text-xs text-ink-400">
-          We&apos;ll verify your payment and confirm your order shortly — you&apos;ll see the status under My
-          Orders.
+          Once you confirm, we&apos;ll be notified right away and get your order ready — you&apos;ll see the status
+          under My Orders.
         </p>
       </div>
     </div>

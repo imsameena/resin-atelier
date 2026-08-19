@@ -37,7 +37,6 @@ export function buildOrderNotificationMessage(order: {
   guestName?: string | null;
   guestPhone?: string | null;
   orderNotes?: string | null;
-  utrNumber?: string | null;
   shippingSnapshot: any;
   user?: { name: string | null; phone?: string | null } | null;
   items: { productName: string; quantity: number; lineTotal: number }[];
@@ -60,15 +59,14 @@ export function buildOrderNotificationMessage(order: {
     .join("\n");
 
   return [
-    `🛒 Payment claim submitted for order: ${order.orderNumber}`,
-    `⚠️ Not verified yet — check the UTR below against your bank/UPI statement before confirming in the admin panel.`,
+    `🛒 New order placed: ${order.orderNumber}`,
+    `Customer says they've paid via UPI — please check your UPI/bank app for the matching payment before confirming.`,
     `Customer: ${customerName} (${customerPhone})`,
     ``,
     `Items:`,
     itemLines,
     ``,
     `Total: Rs.${(order.total / 100).toFixed(2)}`,
-    order.utrNumber ? `UTR to verify: ${order.utrNumber}` : null,
     order.orderNotes ? `Notes: ${order.orderNotes}` : null,
     ``,
     `Delivery Address:`,
