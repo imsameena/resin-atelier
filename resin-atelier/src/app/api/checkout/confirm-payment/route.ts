@@ -55,7 +55,7 @@ export async function POST(req: Request) {
       );
     }
 
-    sendOrderNotificationEmail(`New order confirmed: ${order.orderNumber}`, notificationMessage).catch((err) =>
+    sendOrderNotificationEmail(`Payment claim submitted — verify UTR: ${order.orderNumber}`, notificationMessage).catch((err) =>
       console.error("Failed to send order email notification:", err)
     );
 

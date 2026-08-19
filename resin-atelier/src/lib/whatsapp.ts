@@ -60,14 +60,15 @@ export function buildOrderNotificationMessage(order: {
     .join("\n");
 
   return [
-    `🛒 New order confirmed: ${order.orderNumber}`,
+    `🛒 Payment claim submitted for order: ${order.orderNumber}`,
+    `⚠️ Not verified yet — check the UTR below against your bank/UPI statement before confirming in the admin panel.`,
     `Customer: ${customerName} (${customerPhone})`,
     ``,
     `Items:`,
     itemLines,
     ``,
     `Total: Rs.${(order.total / 100).toFixed(2)}`,
-    order.utrNumber ? `UTR: ${order.utrNumber}` : null,
+    order.utrNumber ? `UTR to verify: ${order.utrNumber}` : null,
     order.orderNotes ? `Notes: ${order.orderNotes}` : null,
     ``,
     `Delivery Address:`,
